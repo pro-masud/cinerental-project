@@ -5,7 +5,12 @@ import { ImageURL } from "../../helper/helper";
 import deleteIcon from "../../assets/delete.svg";
 
 const CardDetails = ({ closeCart }) => {
-  const { cardData } = useContext(MovieContext);
+  const { cardData, setCardData } = useContext(MovieContext);
+
+  const handleDeleteMovie = (id) => {
+    const updatedCardData = cardData.filter((movie) => movie.id !== id);
+    setCardData(updatedCardData);
+  };
 
   return (
     <>
@@ -35,7 +40,10 @@ const CardDetails = ({ closeCart }) => {
                     </div>
                   </div>
                   <div className="flex justify-between gap-4 items-center">
-                    <button className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white">
+                    <button
+                      className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
+                      onClick={() => handleDeleteMovie(movie.id)}
+                    >
                       <img className="w-5 h-5" src={deleteIcon} alt="" />
                       <span className="max-md:hidden">Remove</span>
                     </button>

@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import moon from "../assets/icons/moon.svg";
 import Logo from "../assets/logo.svg";
 import ring from "../assets/ring.svg";
 import shoppingCart from "../assets/shopping-cart.svg";
+import { MovieContext } from "../context/movieContext";
 import CardDetails from "./Movie/CardDetails";
 
 const Header = () => {
-  const [showCardDetails, setShowDetails] = useState(true);
+  const [showCardDetails, setShowDetails] = useState(false);
+
+  const { cardData } = useContext(MovieContext);
+
   return (
     <>
       <header>
@@ -38,11 +42,17 @@ const Header = () => {
             </li>
             <li>
               <a
-                className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
+                className="bg-primary/20 dark:bg-primary/[7%] relative rounded-lg backdrop-blur-[2px] p-1 inline-block"
                 href="#"
                 onClick={() => setShowDetails(true)}
               >
                 <img src={shoppingCart} width="24" height="24" alt="" />
+
+                {cardData.length > 0 && (
+                  <span className="bg-primary text-white text-xs font-semibold rounded-full px-2 py-1 absolute top-[-10px] right-[-10px]">
+                    {cardData.length}
+                  </span>
+                )}
               </a>
             </li>
           </ul>

@@ -1,5 +1,5 @@
 import { ImageURL } from "../../helper/helper";
-const MovieDetails = ({ movie, closeMovie }) => {
+const MovieDetails = ({ movie, closeMovie, addToCard }) => {
   return (
     <>
       <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm p-4 flex items-center justify-center">
@@ -24,6 +24,7 @@ const MovieDetails = ({ movie, closeMovie }) => {
                 <a
                   className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
                   href="#"
+                  onClick={(e) => addToCard(e, movie)}
                 >
                   <img src="./assets/tag.svg" alt="" />
                   <span> ${movie.price}| Add to Cart</span>

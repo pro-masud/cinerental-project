@@ -33,7 +33,11 @@ const MovieCard = ({ movie }) => {
   return (
     <>
       {showModal && (
-        <MovieDetails movie={movie} closeMovie={handleCloseMovie} />
+        <MovieDetails
+          movie={movie}
+          closeMovie={handleCloseMovie}
+          addToCard={handeAddToCart}
+        />
       )}
 
       <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">

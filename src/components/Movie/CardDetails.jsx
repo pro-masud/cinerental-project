@@ -3,6 +3,7 @@ import { MovieContext } from "../../context/movieContext";
 import { ImageURL } from "../../helper/helper";
 
 import deleteIcon from "../../assets/delete.svg";
+import checkoutIcon from "../../assets/icons/checkout.svg";
 
 const CardDetails = ({ closeCart }) => {
   const { cardData, setCardData } = useContext(MovieContext);
@@ -21,47 +22,51 @@ const CardDetails = ({ closeCart }) => {
               Your Carts
             </h2>
             <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
-              {cardData.map((movie) => (
-                <div key={movie.id} className="grid grid-cols-[1fr_auto] gap-4">
-                  <div className="flex items-center gap-4">
-                    <img
-                      className="rounded overflow-hidden"
-                      src={ImageURL(`${movie.cover}`)}
-                      alt=""
-                    />
-                    <div>
-                      <h3 className="text-base md:text-xl font-bold">
-                        {movie.title}
-                      </h3>
-                      <p className="max-md:text-xs text-[#575A6E]">
-                        {movie.genre}
-                      </p>
-                      <span className="max-md:text-xs">${movie.price}</span>
+              {cardData.length === 0 ? (
+                <p className="text-[#575A6E]">No movies in cart.</p>
+              ) : (
+                cardData.map((movie) => (
+                  <div
+                    key={movie.id}
+                    className="grid grid-cols-[1fr_auto] gap-4"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img
+                        className="rounded overflow-hidden"
+                        src={ImageURL(`${movie.cover}`)}
+                        alt={movie.title}
+                        width={"60px"}
+                        height={"80px"}
+                      />
+                      <div>
+                        <h3 className="text-base md:text-xl font-bold">
+                          {movie.title}
+                        </h3>
+                        <p className="max-md:text-xs text-[#575A6E]">
+                          {movie.genre}
+                        </p>
+                        <span className="max-md:text-xs">${movie.price}</span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between gap-4 items-center">
+                      <button
+                        className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
+                        onClick={() => handleDeleteMovie(movie.id)}
+                      >
+                        <img className="w-5 h-5" src={deleteIcon} alt="" />
+                        <span className="max-md:hidden">Remove</span>
+                      </button>
                     </div>
                   </div>
-                  <div className="flex justify-between gap-4 items-center">
-                    <button
-                      className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
-                      onClick={() => handleDeleteMovie(movie.id)}
-                    >
-                      <img className="w-5 h-5" src={deleteIcon} alt="" />
-                      <span className="max-md:hidden">Remove</span>
-                    </button>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
             <div className="flex items-center justify-end gap-2">
               <a
                 className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-primary text-[#171923] text-sm"
                 href="#"
               >
-                <img
-                  src="./assets/icons/checkout.svg"
-                  width="24"
-                  height="24"
-                  alt=""
-                />
+                <img src={checkoutIcon} width="24" height="24" alt="" />
                 <span>Checkout</span>
               </a>
               <a

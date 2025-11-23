@@ -1,16 +1,27 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import moon from "../assets/icons/moon.svg";
+import Sun from "../assets/icons/sun.svg";
 import Logo from "../assets/logo.svg";
 import ring from "../assets/ring.svg";
 import shoppingCart from "../assets/shopping-cart.svg";
-import { MovieContext } from "../context/movieContext";
+import { MovieContext, ThemeContext } from "../context/movieContext";
 import CardDetails from "./Movie/CardDetails";
 
 const Header = () => {
+  const { cardData } = useContext(MovieContext);
+  const { dark, setDark } = useContext(ThemeContext);
   const [showCardDetails, setShowDetails] = useState(false);
 
-  const { cardData } = useContext(MovieContext);
+  useEffect(() => {
+    const html = document.documentElement;
+
+    if (dark) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+  }, [dark]);
 
   return (
     <>
@@ -36,8 +47,9 @@ const Header = () => {
               <a
                 className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
                 href="#"
+                onClick={() => setDark(!dark)}
               >
-                <img src={moon} width="24" height="24" alt="" />
+                <img src={dark ? Sun : moon} width="24" height="24" alt="" />
               </a>
             </li>
             <li>

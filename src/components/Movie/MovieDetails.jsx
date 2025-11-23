@@ -8,7 +8,7 @@ const MovieDetails = ({ movie, closeMovie, addToCard }) => {
             <img
               className="sm:order-2 w-full object-cover h-full max-sm:max-h-[300px]"
               src={ImageURL(`${movie.cover}`)}
-              alt=""
+              alt={movie.title}
             />
             <div className="p-5 lg:p-11">
               <h2 className="text-3xl lg:text-[50px] mb-2 font-bold">

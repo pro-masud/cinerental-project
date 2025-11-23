@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 import moon from "../assets/icons/moon.svg";
 import Sun from "../assets/icons/sun.svg";
@@ -10,18 +10,10 @@ import CardDetails from "./Movie/CardDetails";
 
 const Header = () => {
   const { cardData } = useContext(MovieContext);
-  const { dark, setDark } = useContext(ThemeContext);
+  const { darkMood, setDarkMood } = useContext(ThemeContext);
   const [showCardDetails, setShowDetails] = useState(false);
 
-  useEffect(() => {
-    const html = document.documentElement;
-
-    if (dark) {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-  }, [dark]);
+  console.log(darkMood);
 
   return (
     <>
@@ -47,9 +39,14 @@ const Header = () => {
               <a
                 className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
                 href="#"
-                onClick={() => setDark(!dark)}
+                onClick={() => setDarkMood(!darkMood)}
               >
-                <img src={dark ? Sun : moon} width="24" height="24" alt="" />
+                <img
+                  src={darkMood ? Sun : moon}
+                  width="24"
+                  height="24"
+                  alt=""
+                />
               </a>
             </li>
             <li>

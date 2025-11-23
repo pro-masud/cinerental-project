@@ -6,11 +6,11 @@ import Pages from "./Pages";
 
 function App() {
   const [cardData, setCardData] = useState([]);
-  const [dark, setDark] = useState(true);
+  const [darkMood, setDarkMood] = useState(true);
   return (
     <>
       <MovieContext.Provider value={{ cardData, setCardData }}>
-        <ThemeContext.Provider value={{ dark, setDark }}>
+        <ThemeContext.Provider value={{ darkMood, setDarkMood }}>
           <Pages />
         </ThemeContext.Provider>
       </MovieContext.Provider>

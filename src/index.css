@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap");
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /*
 ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
@@ -69,7 +70,6 @@ body {
   margin: 0;
   /* 1 */
   line-height: inherit;
-  font-family: "Sora", sans-serif;
   /* 2 */
 }
 
@@ -1190,5 +1190,5 @@ video {
 }
 
 .dark {
-  @apply bg-[#12141D] text-white;
+  @apply bg-[#171923] text-white;
 }
